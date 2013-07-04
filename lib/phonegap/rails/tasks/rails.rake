@@ -48,11 +48,13 @@ namespace :phonegap do
         environment = Rails.application.assets
         ## Export js assets
         puts '* javascript assets'
+        FileUtils.mkdir_p "#{project_path}/assets/www/js"
         file = File.open("#{project_path}/assets/www/js/application.js", "w")
         file.write environment['application.js']
         file.close
         ## Export css assets
         puts '* css assets'
+        FileUtils.mkdir_p "#{project_path}/assets/www/css"
         file = File.open("#{project_path}/assets/www/css/application.css", "w")
         file.write environment['angular.css']
         file.close
