@@ -71,7 +71,7 @@ namespace :phonegap do
         #Dir.glob("public/**/*.*").each do |file|
         #  FileUtils.cp file, "#{project_path}/assets/www/" unless file =~ /public\/assets\//
         #end
-        FileUtils.cp("public/**", "#{project_path}/assets/www/")
+        FileUtils.cp("public/*", "#{project_path}/assets/www/")
         puts '* index.html'
         @app_title = main_activity
         public_source = File.expand_path('../../../../public', __FILE__)
