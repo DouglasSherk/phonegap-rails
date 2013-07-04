@@ -54,7 +54,7 @@ namespace :phonegap do
         ## Export css assets
         puts '* css assets'
         file = File.open("#{project_path}/assets/www/css/application.css", "w")
-        file.write environment['application.css']
+        file.write environment['angular.css']
         file.close
         ## Export images and fonts
         puts '* images and fonts'
