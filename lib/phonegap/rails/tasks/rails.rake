@@ -1,5 +1,8 @@
 namespace :phonegap do
   namespace :rails do
+    require "#{Rails.root}/app/helpers/angular_template_caching_helper"
+    include AngularTemplateCachingHelper
+
     config_path = File.join(Rails.root, 'config', 'phonegap_rails.yml')
     if File.exist?(config_path)
       config_file = File.read(config_path)
@@ -72,7 +75,7 @@ namespace :phonegap do
         @app_title = main_activity
         public_source = File.expand_path('../../../../public', __FILE__)
         file = File.open("#{project_path}/assets/www/index.html", "w")
-        file.write ERB.new(File.read("#{public_source}/android_index.html.erb")).result
+        file.write angularRenderRoot
         file.close
         ## Fix relative paths and configure API server
         css_file_path = "#{project_path}/assets/www/css/application.css"
