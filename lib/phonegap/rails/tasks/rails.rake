@@ -61,7 +61,8 @@ namespace :phonegap do
         ## Export images and fonts
         puts '* images and fonts'
         FileUtils.mkdir_p "#{project_path}/assets/www/assets"
-        other_paths = Rails.configuration.assets.paths.select {|x| x =~ /\/fonts$|\/images$/}
+        #other_paths = Rails.configuration.assets.paths.select {|x| x =~ /\/fonts$|\/images$/}
+        other_paths = Rails.configuration.assets.paths.select {|x| x =~ /\/images$/}
         other_paths.each do |path|
           files = Dir.glob("#{path}/**/*.*")
           files.each do |file|
@@ -70,8 +71,8 @@ namespace :phonegap do
         end
         ## Export public folder
         puts '* public folder'
-        Dir["public"].each do |f|
-          FileUtils.cp_r(f, "#{project_path}/assets/www/")
+        Dir["public/*"].each do |f|
+          FileUtils.cp_r(File.basename(f), "#{project_path}/assets/www/assets")
         end
         puts '* index.html'
         @app_title = main_activity
