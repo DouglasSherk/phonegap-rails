@@ -58,22 +58,26 @@ namespace :phonegap do
         file = File.open("#{project_path}/assets/www/css/application.css", "w")
         file.write environment['angular.css']
         file.close
-        ## Export images and fonts
-        puts '* images and fonts'
+        ## Export images
+        puts '* images'
         FileUtils.mkdir_p "#{project_path}/assets/www/assets"
+        FileUtils.mkdir_p "#{project_path}/assets/www/assets/images/"
         #other_paths = Rails.configuration.assets.paths.select {|x| x =~ /\/fonts$|\/images$/}
         other_paths = Rails.configuration.assets.paths.select {|x| x =~ /\/images$/}
         other_paths.each do |path|
           files = Dir.glob("#{path}/**/*.*")
           files.each do |file|
-            FileUtils.cp file, "#{project_path}/assets/www/assets"
+            FileUtils.cp file, "#{project_path}/assets/www/assets/images/"
           end
         end
-        ## Export public folder
-        puts '* public folder'
-        FileUtils.cd(Rails.root) do
-          Dir["public/*"].each do |f|
-            FileUtils.cp_r(f, "#{project_path}/assets/www/assets")
+        ## Export fonts folder
+        puts '* fonts folder'
+        FileUtils.mkdir_p "#{project_path}/assets/www/assets/font/"
+        other_paths = Rails.configuration.assets.paths.select {|x| x =~ /\/font$/}
+        other_paths.each do |path|
+          files = Dir.glob("#{path}/**/*.*")
+          files.each do |file|
+            FileUtils.cp file, "#{project_path}/assets/www/assets/font/"
           end
         end
         puts '* index.html'
