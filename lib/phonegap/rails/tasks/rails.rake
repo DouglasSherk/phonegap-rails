@@ -63,7 +63,7 @@ namespace :phonegap do
         FileUtils.mkdir_p "#{project_path}/assets/www/assets"
         FileUtils.mkdir_p "#{project_path}/assets/www/assets/images/"
         #other_paths = Rails.configuration.assets.paths.select {|x| x =~ /\/fonts$|\/images$/}
-        other_paths = Rails.configuration.assets.paths.select {|x| x =~ /\/images$/}
+        other_paths = Rails.configuration.assets.paths.select {|x| puts x; false }
         other_paths.each do |path|
           files = Dir.glob("#{path}/**/*.*")
           files.each do |file|
@@ -73,7 +73,7 @@ namespace :phonegap do
         ## Export fonts folder
         puts '* fonts folder'
         FileUtils.mkdir_p "#{project_path}/assets/www/assets/font/"
-        other_paths = Rails.configuration.assets.paths.select {|x| x =~ /\/font$/}
+        other_paths = Rails.configuration.assets.paths.select {|x| puts x; false }
         other_paths.each do |path|
           files = Dir.glob("#{path}/**/*.*")
           files.each do |file|
