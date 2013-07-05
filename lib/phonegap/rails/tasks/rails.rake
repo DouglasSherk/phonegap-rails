@@ -72,7 +72,7 @@ namespace :phonegap do
         ## Export public folder
         puts '* public folder'
         Dir["public/*"].each do |f|
-          FileUtils.cp_r(File.basename(f), "#{project_path}/assets/www/assets")
+          FileUtils.cp_r(f, "#{project_path}/assets/www/assets")
         end
         puts '* index.html'
         @app_title = main_activity
