@@ -65,7 +65,7 @@ namespace :phonegap do
         #other_paths = Rails.configuration.assets.paths.select {|x| x =~ /\/fonts$|\/images$/}
         other_paths = Rails.configuration.assets.paths.select {|x| x.to_s.ends_with?('images') }
         other_paths.each do |path|
-          files = Dir.glob("#{path}/**/*.*")
+          files = Dir.glob("#{path}/*.*")
           files.each do |file|
             FileUtils.cp file, "#{project_path}/assets/www/assets/images/"
           end
@@ -75,8 +75,11 @@ namespace :phonegap do
         FileUtils.mkdir_p "#{project_path}/assets/www/assets/font/"
         other_paths = Rails.configuration.assets.paths.select {|x| x.to_s.ends_with?('font') }
         other_paths.each do |path|
-          files = Dir.glob("#{path}/**/*.*")
+          puts path
+          puts "***"
+          files = Dir.glob("#{path}/*.*")
           files.each do |file|
+            puts file
             FileUtils.cp file, "#{project_path}/assets/www/assets/font/"
           end
         end
