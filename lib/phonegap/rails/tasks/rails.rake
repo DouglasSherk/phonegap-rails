@@ -60,27 +60,24 @@ namespace :phonegap do
         file.close
         ## Export images
         puts '* images'
-        FileUtils.mkdir_p "#{project_path}/assets/www/assets"
-        FileUtils.mkdir_p "#{project_path}/assets/www/assets/images/"
+        #FileUtils.mkdir_p "#{project_path}/assets/www/assets"
+        FileUtils.mkdir_p "#{project_path}/assets/www/images/"
         #other_paths = Rails.configuration.assets.paths.select {|x| x =~ /\/fonts$|\/images$/}
         other_paths = Rails.configuration.assets.paths.select {|x| x.to_s.ends_with?('images') }
         other_paths.each do |path|
           files = Dir.glob("#{path}/*.*")
           files.each do |file|
-            FileUtils.cp file, "#{project_path}/assets/www/assets/images/"
+            FileUtils.cp file, "#{project_path}/assets/www/images/"
           end
         end
         ## Export fonts folder
         puts '* fonts folder'
-        FileUtils.mkdir_p "#{project_path}/assets/www/assets/font/"
+        FileUtils.mkdir_p "#{project_path}/assets/www/font/"
         other_paths = Rails.configuration.assets.paths.select {|x| x.to_s.ends_with?('font') }
         other_paths.each do |path|
-          puts path
-          puts "***"
           files = Dir.glob("#{path}/*.*")
           files.each do |file|
-            puts file
-            FileUtils.cp file, "#{project_path}/assets/www/assets/font/"
+            FileUtils.cp file, "#{project_path}/assets/www/font/"
           end
         end
         puts '* index.html'
