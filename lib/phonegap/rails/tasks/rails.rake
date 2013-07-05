@@ -72,7 +72,7 @@ namespace :phonegap do
         end
         ## Export fonts folder
         puts '* fonts folder'
-        FileUtils.mkdir_p "#{project_path}/assets/www/font/"
+        FileUtils.mkdir_p "#{project_path}/assets/www/assets/font/"
         other_paths = Rails.configuration.assets.paths.select {|x| x.to_s.ends_with?('font') }
         other_paths.each do |path|
           files = Dir.glob("#{path}/*.*")
